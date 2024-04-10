@@ -98,7 +98,11 @@
         }
 
         .table_form {
+            width: 90%;
+            margin: 0 auto;
             margin-top: 30px;
+            background-color: white;
+            border-radius: 12px;
         }
 
         .title_container {
@@ -123,13 +127,39 @@
         }
         
         .title_mt {
-            width: 60%
+            width: 55%
+        }
+
+        .fa-trash-can {
+            width: 2.5%;
+            display: block;
+            /*line-height: 40px;*/
+            text-align: center;
+            font-size: 20px;
+            color: red;
+        }
+
+        .fa-pen-to-square {
+            width: 2.5%;
+            display: block;
+            /*line-height: 40px;*/
+            color: green;
+            text-align: center;
+            font-size: 20px;
         }
 
         .title_detail {
             background-color: white;
-            margin-top: 10px;
+            
+            border-radius: 0;
+            border-top: 1px solid black;
+            line-height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+      
 
         .btn_themForm {
             position: fixed;
@@ -245,6 +275,7 @@
             background-color: #e87ecf;
             color: white;
         }
+
     </style>
 </head>
 <body>
@@ -286,7 +317,7 @@
                     foreach (var form in listFormHT)
                     {
                         i++;
-                        Response.Write($"<div class=\"title_container title_detail\">\r\n   <p class=\"idForm_hidden\" hidden>{form.IdForm}</p>\r\n     <p class=\"title_form title_ten\">{i}</p>\r\n    <p class=\"title_form title_stt\">{form.TenForm}</p>\r\n    <p class=\"title_form title_mt\">{form.MoTa}</p>\r\n</div>");
+                        Response.Write($"<div class=\"title_container title_detail\">\r\n   <p class=\"idForm_hidden\" hidden>{form.IdForm}</p>\r\n     <p class=\"title_form title_ten\">{i}</p>\r\n    <p class=\"title_form title_stt\">{form.TenForm}</p>\r\n    <p class=\"title_form title_mt\">{form.MoTa}</p> <i class=\"fa-regular fa-pen-to-square\"></i> <i class=\"fa-regular fa-trash-can\"></i>\r\n</div> ");
                         //Response.Write($"<div class=\"form_container\">fdfaf</div>");
                     } %>
             </div>
@@ -441,22 +472,37 @@
         }
 
 
-        const divs = document.querySelectorAll('.title_container');
+        //Bấm xem form
+        const suas = document.querySelectorAll(".fa-pen-to-square");
 
         // Lặp qua từng div và thêm sự kiện click
-        divs.forEach(div => {
-            div.addEventListener('click', function () {
+        suas.forEach(sua => {
+            sua.addEventListener('click', function () {
                 // Lấy nội dung của thẻ p đầu tiên bên trong div đó
-                const content = this.querySelector('.idForm_hidden').textContent;
+                let content = this.closest(".title_detail").querySelector('.idForm_hidden').textContent;
                 // Chuyển hướng đến trang khaoSat.aspx với tham số nội dung của thẻ p đầu tiên
                 window.location.href = 'trangKhaoSat.aspx?content=' + encodeURIComponent(content);
             });
+            //div.querySelector(".fa-trash-can").addEventListener("click", function() {
+            //    window.location.href ="dangNhap.aspx"
+            //})
         });
+
+
+        //Bấm vào xóa form
+        const xoas = document.querySelectorAll(".fa-trash-can")
+        xoas.forEach(xoa => {
+            xoa.addEventListener("click", function () {
+                let content = this.closest(".title_detail").querySelector('.idForm_hidden').textContent;
+                window.location.href = 'trangChu.aspx?xoa=' + encodeURIComponent(content);
+            })
+        })
 
         const divKS = document.querySelectorAll('.khaoSat');
 
         // Lặp qua từng div và thêm sự kiện click
         divKS.forEach(div => {
+            
             div.addEventListener('click', function () {
                 // Lấy nội dung của thẻ p đầu tiên bên trong div đó
                 const content = this.querySelector('.idForm_hidden').textContent;

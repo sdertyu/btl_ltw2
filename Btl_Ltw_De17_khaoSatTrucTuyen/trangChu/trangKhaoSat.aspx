@@ -192,10 +192,10 @@
         <div class="tab_content" id="tab2">
             
             <div class="tieuDe_container">
-                <% Response.Write($"<input class=\"nd_tieuDe tieuDe\" id=\"ip_tieuDe\" type=\"text\" value=\"{fks.TenForm}\" name=\"tieuDe\"    />"); %>
+                <% Response.Write($"<input class=\"nd_tieuDe tieuDe\" id=\"ip_tieuDe\" type=\"text\" value=\"{fks.TenForm}\" name=\"tieuDe2\"    />"); %>
         
                 <hr class="hr_tieuDe">
-                <% Response.Write($"<input class=\"nd_tieuDe moTaTieuDe\" id=\"ip_moTaTieuDe\" type=\"text\" value=\"{fks.MoTa}\" name=\"moTa\">"); %>
+                <% Response.Write($"<input class=\"nd_tieuDe moTaTieuDe\" id=\"ip_moTaTieuDe\" type=\"text\" value=\"{fks.MoTa}\" name=\"moTa2\">"); %>
         
                 <hr class="hr_moTaTieuDe">
             </div>

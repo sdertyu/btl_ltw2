@@ -31,9 +31,9 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
             {
                 //cauHois = (List<obj_cauHoi>)Application["listCauHoi"];
                 //List<obj_cauHoi>
+                fks = null;
                 String input = Request.Form["btnLuu"];
-                if(input != null)
-                {
+                if(!String.IsNullOrEmpty(input)) {
                     cauTLs = (List<obj_cauTraLoi>)Application["listCTL"];
                     var ques = Request.Form["ques_hidden"].Split(',');
                     var sel = Request.Form["select_hidden"].Split(',');
@@ -47,9 +47,10 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
                         {
                             String tieuDe = Request.Form["tieuDe"];
                             String mota = Request.Form["moTa"];
+                            Response.Write(tieuDe+mota);
                             f.TenForm = tieuDe;
                             f.MoTa = mota;
-                            fks = f;
+                            //fks = f;
                         }
                     }
 
@@ -105,8 +106,9 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
                         cauHois.Add(new obj_cauHoi(idCauHoi, idf, ques[i], sel[i]));
                     }
                 }
+               
 
-                
+
                 //foreach (var f in formsKS)
                 //{
                 //    if (f.IdForm == idf)
@@ -161,11 +163,16 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
                 //}
             }
 
+            fks = null;
+            listCHtheoF.Clear();
+            listCTLtheoCH.Clear();
+            arr.Clear();
             foreach (var f in formsKS)
             {
                 if (f.IdForm == idf)
                 {
                     fks = f;
+                    Response.Write(fks.TenForm+"-");
                     break;
                 }
             }
@@ -208,116 +215,116 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
             listTYK.Add(new obj_themYK(idt, email, idf));
         }
 
-        protected void btnLuuForm_ServerClick(object sender, EventArgs e)
-        {
-            int idf = (int)Session["idForm"];
-            cauTLs = (List<obj_cauTraLoi>)Application["listCTL"];
-            var ques = Request.Form["ques_hidden"].Split(',');
-            var sel = Request.Form["select_hidden"].Split(',');
-            var ans = Request.Form["ans_hidden"].Split(',');
-            int ind = 0;
-            int idCauHoi;
+        //protected void btnLuuForm_ServerClick(object sender, EventArgs e)
+        //{
+        //    int idf = (int)Session["idForm"];
+        //    cauTLs = (List<obj_cauTraLoi>)Application["listCTL"];
+        //    var ques = Request.Form["ques_hidden"].Split(',');
+        //    var sel = Request.Form["select_hidden"].Split(',');
+        //    var ans = Request.Form["ans_hidden"].Split(',');
+        //    int ind = 0;
+        //    int idCauHoi;
 
-            foreach (var f in formsKS)
-            {
-                if (f.IdForm == idf)
-                {
-                    String tieuDe = Request.Form["tieuDe"];
-                    String mota = Request.Form["moTa"];
-                    f.TenForm = tieuDe;
-                    f.MoTa = mota;
-                    fks = f;
-                }
-            }
+        //    foreach (var f in formsKS)
+        //    {
+        //        if (f.IdForm == idf)
+        //        {
+        //            String tieuDe = Request.Form["tieuDe"];
+        //            String mota = Request.Form["moTa"];
+        //            f.TenForm = tieuDe;
+        //            f.MoTa = mota;
+        //            fks = f;
+        //        }
+        //    }
 
-            for (int i = cauHois.Count - 1; i >= 0; i--)
-            {
-                var ch1 = cauHois[i];
-                if (ch1.IdForm == idf)
-                {
-                    // Tìm và xóa tất cả các câu trả lời có IdCauHoi tương ứng với câu hỏi hiện tại
-                    cauTLs.RemoveAll(ctl => ctl.IdCauHoi == ch1.IdCauHoi);
+        //    for (int i = cauHois.Count - 1; i >= 0; i--)
+        //    {
+        //        var ch1 = cauHois[i];
+        //        if (ch1.IdForm == idf)
+        //        {
+        //            // Tìm và xóa tất cả các câu trả lời có IdCauHoi tương ứng với câu hỏi hiện tại
+        //            cauTLs.RemoveAll(ctl => ctl.IdCauHoi == ch1.IdCauHoi);
 
-                    // Xóa câu hỏi khỏi danh sách cauHois
-                    cauHois.RemoveAt(i);
-                }
-            }
-
-
-            for (int i = 0; i < ques.Length; i++)
-            {
-                if (cauHois.Count == 0)
-                {
-                    idCauHoi = 1;
-                    //cauHois.Add(new obj_cauHoi(1, Session["idForm"], ques[i], sel[i]));
-                }
-                else
-                {
-                    idCauHoi = cauHois[cauHois.Count - 1].IdCauHoi + 1;
-
-                }
-
-                while (true)
-                {
-                    if (ind == ans.Length - 1) break;
-                    if (ans[ind].CompareTo(";") == 1)
-                    {
-
-                        if (cauTLs.Count == 0)
-                            cauTLs.Add(new obj_cauTraLoi(1, idCauHoi, ans[ind]));
-                        else
-                            cauTLs.Add(new obj_cauTraLoi(cauTLs[cauTLs.Count - 1].IdCauTraLoi + 1, idCauHoi, ans[ind]));
-                        ind++;
-                        Response.Write(idCauHoi);
-
-                    }
-                    else
-                    {
-                        ind++;
-                        break;
-                    }
-
-                }
-                Response.Write(sel[i]);
-                cauHois.Add(new obj_cauHoi(idCauHoi, idf, ques[i], sel[i]));
-            }
+        //            // Xóa câu hỏi khỏi danh sách cauHois
+        //            cauHois.RemoveAt(i);
+        //        }
+        //    }
 
 
-            //foreach (var f in formsKS)
-            //{
-            //    if (f.IdForm == idf)
-            //    {
-            //        fks = f;
-            //        break;
-            //    }
-            //}
+        //    for (int i = 0; i < ques.Length; i++)
+        //    {
+        //        if (cauHois.Count == 0)
+        //        {
+        //            idCauHoi = 1;
+        //            //cauHois.Add(new obj_cauHoi(1, Session["idForm"], ques[i], sel[i]));
+        //        }
+        //        else
+        //        {
+        //            idCauHoi = cauHois[cauHois.Count - 1].IdCauHoi + 1;
+
+        //        }
+
+        //        while (true)
+        //        {
+        //            if (ind == ans.Length - 1) break;
+        //            if (ans[ind].CompareTo(";") == 1)
+        //            {
+
+        //                if (cauTLs.Count == 0)
+        //                    cauTLs.Add(new obj_cauTraLoi(1, idCauHoi, ans[ind]));
+        //                else
+        //                    cauTLs.Add(new obj_cauTraLoi(cauTLs[cauTLs.Count - 1].IdCauTraLoi + 1, idCauHoi, ans[ind]));
+        //                ind++;
+        //                Response.Write(idCauHoi);
+
+        //            }
+        //            else
+        //            {
+        //                ind++;
+        //                break;
+        //            }
+
+        //        }
+        //        Response.Write(sel[i]);
+        //        cauHois.Add(new obj_cauHoi(idCauHoi, idf, ques[i], sel[i]));
+        //    }
+
+
+        //    //foreach (var f in formsKS)
+        //    //{
+        //    //    if (f.IdForm == idf)
+        //    //    {
+        //    //        fks = f;
+        //    //        break;
+        //    //    }
+        //    //}
 
             
-            //foreach (var ch in cauHois)
-            //{
-            //    if (ch.IdForm == idf)
-            //    {
-            //        listCHtheoF.Add(ch);
-            //        foreach (var ctl in cauTLs)
-            //        {
-            //            if (ch.IdCauHoi == ctl.IdCauHoi)
-            //            {
-            //                listCTLtheoCH.Add(ctl);
-            //                int count = 0;
-            //                foreach (var tlf in listTLF)
-            //                {
-            //                    if(ctl.IdCauTraLoi == tlf.NoiDung)
-            //                    {
-            //                        count ++;
-            //                    }
-            //                }
-            //                arr.Add(count);
-            //            }
-            //        }
-            //    }
-            //}
+        //    //foreach (var ch in cauHois)
+        //    //{
+        //    //    if (ch.IdForm == idf)
+        //    //    {
+        //    //        listCHtheoF.Add(ch);
+        //    //        foreach (var ctl in cauTLs)
+        //    //        {
+        //    //            if (ch.IdCauHoi == ctl.IdCauHoi)
+        //    //            {
+        //    //                listCTLtheoCH.Add(ctl);
+        //    //                int count = 0;
+        //    //                foreach (var tlf in listTLF)
+        //    //                {
+        //    //                    if(ctl.IdCauTraLoi == tlf.NoiDung)
+        //    //                    {
+        //    //                        count ++;
+        //    //                    }
+        //    //                }
+        //    //                arr.Add(count);
+        //    //            }
+        //    //        }
+        //    //    }
+        //    //}
 
-        }
+        //}
 
         protected void xoaForm_ServerClick(object sender, EventArgs e)
         {

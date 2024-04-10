@@ -25,6 +25,13 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
             String email = (String)Session["email"];
             if (!IsPostBack)
             {
+                if (!String.IsNullOrEmpty(Request.QueryString["xoa"]))
+                {
+                    int idfx = int.Parse(Request.QueryString["xoa"]);
+                    listFormKS.RemoveAll(item => item.IdForm == idfx);
+                   
+                }
+
                 //lấy danh sách các form của mình
                 foreach (var form in listFormKS)
                 {
@@ -50,6 +57,10 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
                         }
                     }
                 }
+                
+                
+
+
             }
             else
             {
@@ -71,9 +82,11 @@ namespace Btl_Ltw_De17_khaoSatTrucTuyen.trangChu
                         listFormHT.Add(form);
                     }
                 }
+                Response.Write("fsdf");
+
 
             }
-
+            
         }
 
     }
