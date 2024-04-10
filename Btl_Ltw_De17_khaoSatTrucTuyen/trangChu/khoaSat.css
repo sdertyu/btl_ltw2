@@ -1,0 +1,290 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header_container {
+    height: 70px;
+    background-color: #BA55D3;
+    padding: 10px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.title {
+    font-size: 24pt;
+    display: inline-block;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.van {
+    color: white;
+    cursor: pointer;
+}
+
+.survey {
+    color: #FFD700;
+    padding: 0;
+}
+
+.fa-circle-user {
+    position: absolute;
+    right: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+/* input:focus {
+    outline: none;
+} */
+
+.tab_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    height: 25px;
+    position: relative;
+}
+
+.tab_btn {
+    border: none;
+    background-color: white;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+
+.line {
+    bottom: 0;
+    width: 68px;
+    height: 5px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+}
+
+hr {
+    opacity: 0.5;
+}
+
+.tab_content {
+    display: none;
+}
+
+.function_container {
+    /* width: 50px;
+    height: 100px;
+    background-color: white; */
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+}
+
+    .function_container input {
+        font-size: 24pt;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(229, 225, 225);
+        border-radius: 50%;
+    }
+
+.tab_content.active {
+    display: block;
+    min-height: 100vh;
+    background-color: #d9f5f9;
+}
+
+.tieuDe_container {
+    width: 768px;
+    background-color: white;
+    /* height: 100px; */
+    margin: 0 auto;
+    /* padding-top: 20px; */
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 5px solid #4285f4;
+    border-top: 5px solid #00bcd4;
+    margin-bottom: 20px;
+}
+
+.nd_tieuDe {
+    display: block;
+    width: 100%;
+    border: none;
+    font-size: 11pt;
+    margin-bottom: 5px;
+}
+
+.tieuDe {
+    font-size: 24pt;
+}
+
+.moTaTieuDe {
+    margin-top: 8px;
+}
+
+#ip_tieuDe:focus + .hr_tieuDe {
+    height: 5px;
+    background-color: black;
+    transition: all 0.5s ease-in;
+}
+
+
+#ip_moTaTieuDe:focus + .hr_moTaTieuDe {
+    height: 5px;
+    background-color: black;
+    transition: all 0.3s ease-in;
+}
+
+.question-answer_container {
+    width: 768px;
+    background-color: white;
+    height: fit-content;
+    margin: 0 auto;
+    /* padding-top: 20px; */
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 5px solid #4285f4;
+    border-top: 5px solid #00bcd4;
+    margin-bottom: 30px;
+}
+
+.question_container {
+    width: 440;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.question {
+    margin-bottom: 2px;
+    border: none;
+    width: 440px;
+    height: 56px;
+    background-color: #f3fafa;
+    padding: 10px;
+    font-size: 12pt;
+}
+
+.select_container {
+    display: inline-block;
+    vertical-align: top;
+    height: 48px;
+    position: relative;
+}
+
+    .select_container select {
+        width: 214px;
+        height: 48px;
+        display: inline-block;
+        appearance: none;
+        padding: 10px;
+    }
+
+.select_icon {
+    width: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    display: flex;
+    justify-items: center;
+    transform: translateY(-50%);
+}
+
+.remove_question {
+    height: 50px;
+    vertical-align: top;
+    font-size: 15pt;
+    background-color: white;
+    margin-left: 20px;
+}
+
+.answer {
+    height: 50px;
+    width: 650px;
+    /* display: flex; */
+    /* align-self: center; */
+    /* justify-content: center; */
+}
+
+.answer_type {
+    width: 20px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.anwser_text {
+    width: 600px;
+    height: 50px;
+    font-size: 12pt;
+    vertical-align: top;
+}
+
+.remove_anwser {
+    height: 50px;
+    vertical-align: top;
+    font-size: 12pt;
+    background-color: white;
+}
+
+span {
+    color: blue;
+    font-size: 17px;
+    padding-left: 30px;
+}
+
+.stt_an {
+    line-height: 50px;
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn_luu {
+    color: mediumpurple;
+    position: fixed;
+    bottom: 20px;
+    padding: 7px;
+    left: 50%;
+    outline: solid;
+
+}
+
+
+.tab3_them {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#txtEmail {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 7px;
+    width: 70%;
+}
+
+#btnThemYK {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 5px;
+    width: 150px;
+    margin-top: 30px;
+}
+
+.btnXoaForm {
+    color: red;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 5px;
+    width: 150px;
+    margin-top: 30px;
+}
